@@ -1,0 +1,54 @@
+/* Custom styles to complement the Bootstrap theme */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+/* Improved file input styling */
+input[type="file"] {
+    padding: 8px;
+}
+
+/* Responsive textarea */
+#transcriptText {
+    width: 100%;
+    min-height: 200px;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    #transcriptText {
+        min-height: 150px;
+    }
+}
+
+/* Animation for processing status */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+#progressStatus {
+    animation: pulse 1.5s infinite;
+}
+
+/* Card hover effect */
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Video Speech to Text Converter{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0"><i class="fas fa-film me-2"></i>Video Speech to Text Converter</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead text-center mb-4">
+                    Upload a video file to convert speech to text using the Whisper speech recognition model
+                </p>
+                
+                <!-- Upload Form -->
+                <form id="uploadForm" enctype="multipart/form-data" class="mb-4">
+                    <div class="mb-3">
+                        <label for="videoFile" class="form-label">Select Video File</label>
+                        <input class="form-control" type="file" id="videoFile" name="video" accept=".mp4,.avi,.mov,.wmv,.flv,.mkv">
+                        <div class="form-text">Supported formats: MP4, AVI, MOV, WMV, FLV, MKV</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" id="uploadBtn">
+                            <i class="fas fa-upload me-2"></i>Upload and Transcribe
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Progress Bar (hidden by default) -->
+                <div id="progressContainer" class="mb-4 d-none">
+                    <h5><i class="fas fa-cog fa-spin me-2"></i>Processing Video</h5>
+                    <div class="progress" style="height: 25px;">
+                        <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                             role="progressbar" style="width: 0%;" 
+                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+                    <p class="text-center mt-2" id="progressStatus">Uploading video...</p>
+                </div>
+                
+                <!-- Error Alert (hidden by default) -->
+                <div id="errorAlert" class="alert alert-danger d-none" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span id="errorMessage"></span>
+                </div>
+                
+                <!-- Results Section (hidden by default) -->
+                <div id="resultsContainer" class="d-none">
+                    <div class="card mb-3">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Transcription Result</h5>
+                            <button id="downloadBtn" class="btn btn-sm btn-success">
+                                <i class="fas fa-download me-1"></i>Download Text
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <textarea id="transcriptText" class="form-control" rows="10" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions Card -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white">
+                <h3 class="h5 mb-0"><i class="fas fa-info-circle me-2"></i>How It Works</h3>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li>Upload your video file (MP4, AVI, MOV, WMV, FLV, MKV)</li>
+                    <li>Our system extracts the audio from your video using ffmpeg</li>
+                    <li>The audio is processed using Google's free speech recognition API</li>
+                    <li>For videos longer than 1 minute, only the first minute will be transcribed</li>
+                    <li>View and download your transcript</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}
