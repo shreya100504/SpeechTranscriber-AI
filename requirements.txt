@@ -1,0 +1,7 @@
+Flask
+openai
+SpeechRecognition
+pydub
+ffmpeg-python
+PyAudio
+numpy

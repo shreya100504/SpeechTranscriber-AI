@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.pythonlibs/
+.upm/
+replit.nix
+uv.lock
+*.wav
+*.mp4
+uploads/
